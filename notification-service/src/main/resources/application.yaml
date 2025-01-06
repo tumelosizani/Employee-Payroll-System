@@ -1,0 +1,9 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: notification-service
+
+  data:
+    mongodb:
+      uri: mongodb://tumelosizani:tumelosizani@localhost:27017/notificationdb?authSource=admin
