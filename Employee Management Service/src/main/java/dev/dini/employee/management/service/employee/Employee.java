@@ -32,29 +32,14 @@ public class Employee {
 
     private String phone;
 
-    @NotNull(message = "Salary must not be null")
-    @Positive(message = "Salary must be positive")
-    private Double salary;
-
-    private String basicSalary;
-
-    private String salaryType;
-
-    private String department;
-
-    @NotNull
-    @NotBlank(message = "Position must not be blank")
+    @NotNull(message = "Position must not be blank")
+    @NotBlank
     private String position;
 
     private String address;
 
     private LocalDate dateOfBirth;
     private LocalDate dateOfEmployment;
-
-    private String bankAccount;
-
-    private Integer leaveBalance = 0; // Default value for leaveBalance
-
 
     // Default constructor (required by JPA)
     public Employee() {}
@@ -68,75 +53,6 @@ public class Employee {
         this.position = position;
     }
 
-
-
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public Double getSalary() {
-        return salary;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public LocalDate getDateOfEmployment() {
-        return dateOfEmployment;
-    }
-
-    public void setLeaveBalance(Integer leaveBalance) {
-        this.leaveBalance = leaveBalance;
-    }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
-    }
-
-
-
-    public int getLeaveBalance() {
-        return leaveBalance;  // Return the actual leaveBalance value
-    }
-
-    // Optionally, override toString(), equals(), and hashCode() methods if needed
     @Override
     public String toString() {
         return "Employee{" +
@@ -160,9 +76,4 @@ public class Employee {
     public int hashCode() {
         return employeeId != null ? employeeId.hashCode() : 0;
     }
-
-    public void setBasicSalary(double basicSalary) {
-
-    }
 }
-
