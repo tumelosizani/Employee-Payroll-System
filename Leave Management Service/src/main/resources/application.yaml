@@ -3,3 +3,6 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: leave-management-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:6000/leave-service
