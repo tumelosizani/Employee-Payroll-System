@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:6000/employee-service
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  application:
+    config:
+
+
+server:
+  port: 8090

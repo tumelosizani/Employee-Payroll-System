@@ -1,0 +1,25 @@
+server:
+  port: 8222
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: employee-service
+          uri: lb:http://EMPLOYEE-SERVICE
+          predicates:
+            - Path=/api/v1/employee/**
+        - id: leave-service
+          uri: lb:http://LEAVE-SERVICE
+          predicates:
+            - Path=/api/v1/leave/**
+        - id: payroll-service
+          uri: lb:http://PAYROLL-SERVICE
+          predicates:
+            - Path=/api/v1/payroll/**
+        - id: tax-service
+          uri: lb:http://TAX-SERVICE
+          predicates:
+            - Path=/api/v1/tax/**
