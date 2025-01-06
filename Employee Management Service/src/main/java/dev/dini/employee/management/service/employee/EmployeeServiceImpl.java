@@ -1,5 +1,6 @@
 package dev.dini.employee.management.service.employee;
 
+
 import dev.dini.employee.management.service.exception.EmployeeNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee updateEmployee(Integer employeeId, Employee employee) {
         logger.info("Updating employee with id: {}", employeeId);
         if (!employeeRepository.existsById(employeeId)) {
-            throw new dev.dini.employee.payroll.system.exception.EmployeeNotFoundException("Employee not found with id: " + employeeId);
+            throw new EmployeeNotFoundException("Employee not found with id: " + employeeId);
         }
         employee.setEmployeeId(employeeId);
         return employeeRepository.save(employee);
@@ -53,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean deleteEmployee(Integer employeeId) {
         logger.info("Deleting employee with id: {}", employeeId);
         if (!employeeRepository.existsById(employeeId)) {
-            throw new dev.dini.employee.payroll.system.exception.EmployeeNotFoundException("Employee record not found for ID " + employeeId);
+            throw new EmployeeNotFoundException("Employee record not found for ID " + employeeId);
         }
         employeeRepository.deleteById(employeeId);
         return true;
