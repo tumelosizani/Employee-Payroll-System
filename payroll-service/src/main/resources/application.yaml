@@ -1,0 +1,14 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: payroll-service
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:6000/payroll-service
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
