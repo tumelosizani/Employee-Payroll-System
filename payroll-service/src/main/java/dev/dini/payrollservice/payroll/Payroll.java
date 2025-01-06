@@ -17,10 +17,10 @@ import java.time.LocalDate;
 public class Payroll {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generated ID for each payroll record
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer payrollId;
 
-    @NotNull(message = "Employee ID must not be null.")  // Employee ID from Employee Service
+    @NotNull(message = "Employee ID must not be null.")
     @Column(nullable = false, name = "employee_id")
     private Integer employeeId;
 
@@ -48,7 +48,6 @@ public class Payroll {
     @Column(name = "status")
     private PayrollStatus status;
 
-    // Constructor for setting necessary fields
     public Payroll(Integer employeeId, Double basicSalary, Double bonus, Double deductions, LocalDate payDate, PayrollStatus status) {
         this.employeeId = employeeId;
         this.basicSalary = basicSalary;
@@ -59,12 +58,10 @@ public class Payroll {
         this.status = status;
     }
 
-    // Method to calculate net salary
     public Double calculateNetSalary() {
         return basicSalary + bonus - deductions;
     }
 
-    // Auditing fields (optional)
     @Column(updatable = false)
     private LocalDate createdAt = LocalDate.now();
 
@@ -73,13 +70,5 @@ public class Payroll {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDate.now();
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public void setNetPay(Double netSalary) {
-        this.netSalary = netSalary;
     }
 }
