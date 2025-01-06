@@ -1,5 +1,7 @@
 package dev.dini.employee.management.service.employee;
 
+import dev.dini.employee.management.service.dto.EmployeeRequestDTO;
+import dev.dini.employee.management.service.dto.EmployeeResponseDTO;
 import dev.dini.employee.management.service.exception.EmployeeNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,8 +22,8 @@ public class EmployeeController {
 
     // Get all employees
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = employeeService.getAllEmployees();
+    public ResponseEntity<List<EmployeeResponseDTO>> getAllEmployees() {
+        List<EmployeeResponseDTO> employees = employeeService.getAllEmployees();
         if (employees.isEmpty()) {
             return ResponseEntity.noContent().build();  // Returns 204 if no employees are found
         }
@@ -30,9 +32,9 @@ public class EmployeeController {
 
     // Get employee by ID
     @GetMapping("/{employeeId}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer employeeId) {
+    public ResponseEntity<EmployeeResponseDTO> getEmployeeById(@PathVariable Integer employeeId) {
         try {
-            Employee employee = employeeService.getEmployeeById(employeeId);
+            EmployeeResponseDTO employee = employeeService.getEmployeeById(employeeId);
             return ResponseEntity.ok(employee);  // Returns 200 with the employee object
         } catch (EmployeeNotFoundException exception) {
             return ResponseEntity.notFound().build();  // Returns 404 if employee is not found
@@ -41,9 +43,9 @@ public class EmployeeController {
 
     // Create new employee
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee employee) {
+    public ResponseEntity<EmployeeResponseDTO> createEmployee(@RequestBody @Valid EmployeeRequestDTO employeeRequestDTO) {
         try {
-            Employee createdEmployee = employeeService.createEmployee(employee);
+            EmployeeResponseDTO createdEmployee = employeeService.createEmployee(employeeRequestDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdEmployee);  // Returns 201 Created
         } catch (IllegalArgumentException exception) {
             return ResponseEntity.badRequest().build();  // Returns 400 Bad Request if validation fails
@@ -52,9 +54,9 @@ public class EmployeeController {
 
     // Update employee
     @PutMapping("/{employeeId}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Integer employeeId, @RequestBody @Valid Employee employee) {
+    public ResponseEntity<EmployeeResponseDTO> updateEmployee(@PathVariable Integer employeeId, @RequestBody @Valid EmployeeRequestDTO employeeRequestDTO) {
         try {
-            Employee updatedEmployee = employeeService.updateEmployee(employeeId, employee);
+            EmployeeResponseDTO updatedEmployee = employeeService.updateEmployee(employeeId, employeeRequestDTO);
             return ResponseEntity.ok(updatedEmployee);  // Returns 200 with the updated employee
         } catch (EmployeeNotFoundException exception) {
             return ResponseEntity.notFound().build();  // Returns 404 if employee is not found
