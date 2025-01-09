@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface LeaveRequestMapper {
 
     LeaveRequestMapper INSTANCE = Mappers.getMapper(LeaveRequestMapper.class);
